@@ -23,10 +23,8 @@ func (w *Writer) Write(data []byte) (n int, err error) {
 // Close audio file
 func (w *Writer) Close() (err error) {
 	binary.LittleEndian.PutUint32(w.wav[4:], w.size+36)
-	// todo
-	// binary.LittleEndian.PutUint32(w.wav[40:], w.size)
-	// fmt.Println(w.wav[40:44])
-	copy(w.wav[40:], []byte{62, 0, 0, 0})
+	binary.LittleEndian.PutUint32(w.wav[40:], w.size)
+
 	w.file.Write(w.wav)
 	w.file.Close()
 	return

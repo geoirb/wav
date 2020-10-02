@@ -35,13 +35,13 @@ func (r *Reader) Read(data []byte) (n int, err error) {
 	return r.Read(data)
 }
 
-// GetChannels ...
-func (r *Reader) GetChannels() uint16 {
+// GetNumChannels ...
+func (r *Reader) GetNumChannels() uint16 {
 	return r.numChannels
 }
 
-// GetRate ...
-func (r *Reader) GetRate() uint32 {
+// GetSampleRate ...
+func (r *Reader) GetSampleRate() uint32 {
 	return r.sampleRate
 }
 
@@ -54,8 +54,7 @@ func NewReader(data []byte) (r *Reader, err error) {
 
 	if bytes.Compare(data[0:4], tokenRiff) != 0 &&
 		bytes.Compare(data[8:12], tokenWAVE) != 0 &&
-		bytes.Compare(data[12:16], tokenFmt) != 0 &&
-		bytes.Compare(data[36:40], tokenList) != 0 {
+		bytes.Compare(data[12:16], tokenFmt) != 0 {
 		err = ErrFormat
 		return
 	}

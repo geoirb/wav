@@ -4,7 +4,7 @@ var (
 	tokenRiff = []byte{'R', 'I', 'F', 'F'}
 	tokenWAVE = []byte{'W', 'A', 'V', 'E'}
 	tokenFmt  = []byte{'f', 'm', 't', ' '}
-	tokenList = []byte{'L', 'I', 'S', 'T'}
+	tokenList = []byte{'d', 'a', 't', 'a'}
 )
 
 // bitsPerSample
@@ -14,5 +14,4 @@ const (
 
 // Header wav file
 type Header struct {
-
 }
