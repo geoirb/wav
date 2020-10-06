@@ -32,7 +32,7 @@ type Reader struct {
 }
 
 func (r *Reader) Read(data []byte) (n int, err error) {
-	return r.Read(data)
+	return r.reader.Read(data)
 }
 
 // GetNumChannels ...
