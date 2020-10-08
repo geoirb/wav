@@ -9,9 +9,7 @@ var (
 
 // bitsPerSample
 const (
-	FormatS16LE = 16
+	FormatS16LE    = 16
+	SizePCM        = 16
+	AudioFormatPCM = 1
 )
-
-// Header wav file
-type Header struct {
-}

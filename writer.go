@@ -12,6 +12,11 @@ type Writer struct {
 	file *os.File
 }
 
+// GetData get audio byte array
+func (w *Writer) GetData() []byte {
+	return w.wav
+}
+
 // Write audio signal
 func (w *Writer) Write(data []byte) (n int, err error) {
 	n = len(data)
@@ -40,8 +45,8 @@ func NewWriter(file *os.File, channels uint16, rate, format uint32) (w *Writer) 
 	copy(w.wav[8:], tokenWAVE)
 	copy(w.wav[12:], tokenFmt)
 
-	binary.LittleEndian.PutUint32(w.wav[16:], 16)
-	binary.LittleEndian.PutUint16(w.wav[20:], 1)
+	binary.LittleEndian.PutUint32(w.wav[16:], SizePCM)
+	binary.LittleEndian.PutUint16(w.wav[20:], AudioFormatPCM)
 	binary.LittleEndian.PutUint16(w.wav[22:], channels)
 	binary.LittleEndian.PutUint32(w.wav[24:], rate)
 
