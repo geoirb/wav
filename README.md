@@ -4,7 +4,7 @@ Simple package for work with wav
 ## WAV file structure
 
 |Offset(byte)|Size(byte)|Name|Description|
-|:--|:--|:--|:--
+|:--:|:--:|:--|:--:
 |0|4|chunkId|Contains "RIFF" characters in ASCII encoding. It is the beginning of the RIFF chain.
 |4|4|chunkSize|This is the remaining chain size from that position. In other words, this is the file size minus 8, that is, the chunkId and chunkSize fields are excluded.
 |8|4|format|Contains "WAVE" symbols
@@ -18,7 +18,7 @@ Simple package for work with wav
 |34|2|bitsPerSample|The number of bits in the sample. The so-called "depth" or accuracy of sound. 8 bits, 16 bits, etc.
 |36|4|subchunk2Id|Contains symbols "data"
 |40|4|subchunk2Size|The number of bytes in the data area.
-|44 ...||data|WAV audio data.
+|44|...|data|WAV audio data.
 
 ## Example
 
