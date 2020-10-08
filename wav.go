@@ -7,9 +7,10 @@ var (
 	tokenList = []byte{'d', 'a', 't', 'a'}
 )
 
-// bitsPerSample
 const (
-	FormatS16LE    = 16
-	SizePCM        = 16
-	AudioFormatPCM = 1
+	// S16 16 bits per a sample
+	S16 = 16
+
+	sizePCM        = 16
+	audioFormatPCM = 1
 )

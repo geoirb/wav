@@ -15,19 +15,19 @@ var (
 
 // Reader wav
 type Reader struct {
-	chunkID       []byte // 0...3
-	chunkSize     uint32 // 4...7
-	format        []byte // 8...11
-	subchunk1ID   []byte // 12...15
-	subchunk1Size uint32 // 16...19
-	audioFormat   uint16 // 20...21
-	numChannels   uint16 // 22...23
-	sampleRate    uint32 // 24...27
-	byteRate      uint32 // 28...31
-	blockAlign    uint16 // 32...33
-	bitsPerSample uint16 // 34...35
-	subchunk2ID   []byte // 36...39
-	subchunk2Size uint32 // 40...43
+	chunkID       []byte // 0...3 bytes
+	chunkSize     uint32 // 4...7 bytes
+	format        []byte // 8...11 bytes
+	subchunk1ID   []byte // 12...15 bytes
+	subchunk1Size uint32 // 16...19 bytes
+	audioFormat   uint16 // 20...21 bytes
+	numChannels   uint16 // 22...23 bytes
+	sampleRate    uint32 // 24...27 bytes
+	byteRate      uint32 // 28...31 bytes
+	blockAlign    uint16 // 32...33 bytes
+	bitsPerSample uint16 // 34...35 bytes
+	subchunk2ID   []byte // 36...39 bytes
+	subchunk2Size uint32 // 40...43 bytes
 	reader        io.Reader
 }
 
@@ -45,7 +45,7 @@ func (r *Reader) GetSampleRate() uint32 {
 	return r.sampleRate
 }
 
-// NewReader wav file
+// NewReader parse audio data in wav format
 func NewReader(data []byte) (r *Reader, err error) {
 	if len(data) < 44 {
 		err = ErrSmallSize
