@@ -2,7 +2,6 @@
 
 Simple package for work with wav
 ## WAV file structure
----
 
 |Offset(byte)|Size(byte)|Name|Description|
 |:--|:--|:--|:--
@@ -19,11 +18,9 @@ Simple package for work with wav
 |34|2|bitsPerSample|The number of bits in the sample. The so-called "depth" or accuracy of sound. 8 bits, 16 bits, etc.
 |36|4|subchunk2Id|Contains symbols "data"
 |40|4|subchunk2Size|The number of bytes in the data area.
-|44||data|WAV audio data.
-
+|44 ...||data|WAV audio data.
 
 ## Example
----
 
 ```golang
 import "github.com/geoirb/wav"
