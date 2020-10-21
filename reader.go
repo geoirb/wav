@@ -11,7 +11,7 @@ import (
 // errors
 var (
 	ErrSmallSize = errors.New("small size of data")
-	ErrHeader    = "want: %s got: %s"
+	errHeader    = "want: %s got: %s"
 )
 
 // Reader wav
@@ -54,17 +54,17 @@ func NewReader(data []byte) (r *Reader, err error) {
 	}
 
 	if bytes.Compare(data[0:4], tokenRiff) != 0 {
-		err = fmt.Errorf(ErrHeader, tokenRiff, data[0:4])
+		err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
 		return
 	}
 
 	if bytes.Compare(data[8:12], tokenWAVE) != 0 {
-		err = fmt.Errorf(ErrHeader, tokenRiff, data[0:4])
+		err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
 		return
 	}
 
 	if bytes.Compare(data[12:16], tokenFmt) != 0 {
-		err = fmt.Errorf(ErrHeader, tokenRiff, data[0:4])
+		err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
 		return
 	}
 
