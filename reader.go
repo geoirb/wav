@@ -58,12 +58,12 @@ func NewReader(data []byte) (r *Reader, err error) {
 	// }
 
 	// if bytes.Compare(data[8:12], tokenWAVE) != 0 {
-	// 	err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
+	// 	err = fmt.Errorf(errHeader, tokenRiff, data[8:12])
 	// 	return
 	// }
 
 	// if bytes.Compare(data[12:16], tokenFmt) != 0 {
-	// 	err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
+	// 	err = fmt.Errorf(errHeader, tokenRiff, data[12:16])
 	// 	return
 	// }
 
