@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"fmt"
 	"io"
 )
 
@@ -53,20 +52,20 @@ func NewReader(data []byte) (r *Reader, err error) {
 		return
 	}
 
-	if bytes.Compare(data[0:4], tokenRiff) != 0 {
-		err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
-		return
-	}
+	// if bytes.Compare(data[0:4], tokenRiff) != 0 {
+	// 	err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
+	// 	return
+	// }
 
-	if bytes.Compare(data[8:12], tokenWAVE) != 0 {
-		err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
-		return
-	}
+	// if bytes.Compare(data[8:12], tokenWAVE) != 0 {
+	// 	err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
+	// 	return
+	// }
 
-	if bytes.Compare(data[12:16], tokenFmt) != 0 {
-		err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
-		return
-	}
+	// if bytes.Compare(data[12:16], tokenFmt) != 0 {
+	// 	err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
+	// 	return
+	// }
 
 	r = &Reader{
 		chunkID:       data[:4],
