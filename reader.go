@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"io"
 )
 
 // errors
 var (
 	ErrSmallSize = errors.New("small size of data")
-	ErrFormat    = errors.New("wav format")
+	ErrHeader    = "want: %s got: %s"
 )
 
 // Reader wav
@@ -52,10 +53,18 @@ func NewReader(data []byte) (r *Reader, err error) {
 		return
 	}
 
-	if bytes.Compare(data[0:4], tokenRiff) != 0 &&
-		bytes.Compare(data[8:12], tokenWAVE) != 0 &&
-		bytes.Compare(data[12:16], tokenFmt) != 0 {
-		err = ErrFormat
+	if bytes.Compare(data[0:4], tokenRiff) != 0 {
+		err = fmt.Errorf(ErrHeader, tokenRiff, data[0:4])
+		return
+	}
+
+	if bytes.Compare(data[8:12], tokenWAVE) != 0 {
+		err = fmt.Errorf(ErrHeader, tokenRiff, data[0:4])
+		return
+	}
+
+	if bytes.Compare(data[12:16], tokenFmt) != 0 {
+		err = fmt.Errorf(ErrHeader, tokenRiff, data[0:4])
 		return
 	}
 
