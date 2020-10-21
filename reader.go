@@ -10,7 +10,6 @@ import (
 // errors
 var (
 	ErrSmallSize = errors.New("small size of data")
-	errHeader    = "want: %s got: %s"
 )
 
 // Reader wav
@@ -31,18 +30,74 @@ type Reader struct {
 	reader        io.Reader
 }
 
-func (r *Reader) Read(data []byte) (n int, err error) {
-	return r.reader.Read(data)
+// GetChunkID ...
+func (r *Reader) GetChunkID() []byte {
+	return r.chunkID
 }
 
-// GetNumChannels ...
+// GetChunkSize size from that position
+func (r *Reader) GetChunkSize() uint32 {
+	return r.chunkSize
+}
+
+// GetFormat ...
+func (r *Reader) GetFormat() []byte {
+	return r.format
+}
+
+// GetSubchunk1ID ...
+func (r *Reader) GetSubchunk1ID() []byte {
+	return r.subchunk1ID
+}
+
+// GetSubchunk1Size ...
+func (r *Reader) GetSubchunk1Size() uint32 {
+	return r.subchunk1Size
+}
+
+// GetAudioFormat audio format, list of acceptable formats
+func (r *Reader) GetAudioFormat() uint16 {
+	return r.audioFormat
+}
+
+// GetNumChannels number of channels
 func (r *Reader) GetNumChannels() uint16 {
 	return r.numChannels
 }
 
-// GetSampleRate ...
+// GetSampleRate sampling frequency
 func (r *Reader) GetSampleRate() uint32 {
 	return r.sampleRate
+}
+
+// GetByteRate number of bytes transferred per second of playback
+func (r *Reader) GetByteRate() uint32 {
+	return r.byteRate
+}
+
+// GetBlockAlign number of bytes for one sample
+func (r *Reader) GetBlockAlign() uint16 {
+	return r.blockAlign
+}
+
+// GetBitsPerSample number of bits in the sample
+func (r *Reader) GetBitsPerSample() uint16 {
+	return r.bitsPerSample
+}
+
+// GetSubchunk2ID ...
+func (r *Reader) GetSubchunk2ID() []byte {
+	return r.subchunk2ID
+}
+
+// GetSubchunk2Size number of bytes in the data area
+func (r *Reader) GetSubchunk2Size() uint32 {
+	return r.subchunk2Size
+}
+
+// Read audio
+func (r *Reader) Read(data []byte) (n int, err error) {
+	return r.reader.Read(data)
 }
 
 // NewReader parse audio data in wav format
@@ -51,21 +106,6 @@ func NewReader(data []byte) (r *Reader, err error) {
 		err = ErrSmallSize
 		return
 	}
-
-	// if bytes.Compare(data[0:4], tokenRiff) != 0 {
-	// 	err = fmt.Errorf(errHeader, tokenRiff, data[0:4])
-	// 	return
-	// }
-
-	// if bytes.Compare(data[8:12], tokenWAVE) != 0 {
-	// 	err = fmt.Errorf(errHeader, tokenRiff, data[8:12])
-	// 	return
-	// }
-
-	// if bytes.Compare(data[12:16], tokenFmt) != 0 {
-	// 	err = fmt.Errorf(errHeader, tokenRiff, data[12:16])
-	// 	return
-	// }
 
 	r = &Reader{
 		chunkID:       data[:4],

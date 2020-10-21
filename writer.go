@@ -7,7 +7,7 @@ import (
 
 // Writer wav file
 type Writer struct {
-	data  []byte
+	data []byte
 	size uint32
 	file *os.File
 }
@@ -30,8 +30,9 @@ func (w *Writer) Close() (err error) {
 	binary.LittleEndian.PutUint32(w.data[4:], w.size+36)
 	binary.LittleEndian.PutUint32(w.data[40:], w.size)
 
-	w.file.Write(w.data)
-	w.file.Close()
+	if _, err = w.file.Write(w.data); err == nil {
+		err = w.file.Close()
+	}
 	return
 }
 
@@ -39,7 +40,7 @@ func (w *Writer) Close() (err error) {
 func NewWriter(file *os.File, channels uint16, rate, format uint32) (w *Writer) {
 	w = &Writer{
 		file: file,
-		data:  make([]byte, 44, 44),
+		data: make([]byte, 44),
 	}
 	copy(w.data[0:], tokenRiff)
 	copy(w.data[8:], tokenWAVE)
