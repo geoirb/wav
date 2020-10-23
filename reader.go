@@ -30,7 +30,7 @@ type Reader struct {
 	reader        io.Reader
 }
 
-// GetChunkID ...
+// GetChunkID field
 func (r *Reader) GetChunkID() []byte {
 	return r.chunkID
 }
@@ -40,22 +40,22 @@ func (r *Reader) GetChunkSize() uint32 {
 	return r.chunkSize
 }
 
-// GetFormat ...
+// GetFormat field
 func (r *Reader) GetFormat() []byte {
 	return r.format
 }
 
-// GetSubchunk1ID ...
+// GetSubchunk1ID field
 func (r *Reader) GetSubchunk1ID() []byte {
 	return r.subchunk1ID
 }
 
-// GetSubchunk1Size ...
+// GetSubchunk1Size field
 func (r *Reader) GetSubchunk1Size() uint32 {
 	return r.subchunk1Size
 }
 
-// GetAudioFormat audio format, list of acceptable formats
+// GetAudioFormat audio format
 func (r *Reader) GetAudioFormat() uint16 {
 	return r.audioFormat
 }
@@ -85,7 +85,7 @@ func (r *Reader) GetBitsPerSample() uint16 {
 	return r.bitsPerSample
 }
 
-// GetSubchunk2ID ...
+// GetSubchunk2ID field
 func (r *Reader) GetSubchunk2ID() []byte {
 	return r.subchunk2ID
 }

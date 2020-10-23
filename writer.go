@@ -12,7 +12,7 @@ type Writer struct {
 	file *os.File
 }
 
-// GetData get audio byte array
+// GetData get byte array
 func (w *Writer) GetData() []byte {
 	return w.data
 }
@@ -25,7 +25,7 @@ func (w *Writer) Write(data []byte) (n int, err error) {
 	return
 }
 
-// Close audio file
+// Close writer and file in wav format
 func (w *Writer) Close() (err error) {
 	binary.LittleEndian.PutUint32(w.data[4:], w.size+36)
 	binary.LittleEndian.PutUint32(w.data[40:], w.size)
