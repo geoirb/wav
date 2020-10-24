@@ -8,8 +8,12 @@ var (
 )
 
 const (
-	// S16 16 bits per a sample
-	S16 = 16
+	// S16LE Signed 16 bit Little Endian
+	S16LE = 16
+	// S24LE Signed 24 bit Little Endian
+	S24LE = 24
+	// S32LE Signed 32 bit Little Endian
+	S32LE = 32
 
 	sizePCM        = 16
 	audioFormatPCM = 1

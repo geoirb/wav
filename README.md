@@ -29,21 +29,22 @@ import "github.com/geoirb/wav"
 Read .wav file
 
 ```golang
-data, _ := ioutil.ReadFile("path-file.wav")
-wav.NewReader(data)
+    data, _ := ioutil.ReadFile("path-file.wav")
+    wav.NewReader(data)
 ```
 
 Create .wav file
 
 ```golang
-file, _ := os.Create("path-file.wav")
-w := wav.NewWriter(file, 2, 44100, wav.S16)
-for{
-    // read audio data
-    // ...
-    w.Write(w)
-    // ...
-}
-w.Close()
+	file, _ := os.Create("path-file.wav")
+	w := wav.NewWriter(file, 2, 44100, wav.S16LE)
+	var data []byte
+	for {
+		// read audio data
+		// ...
+		w.Write(data)
+		// ...
+	}
+	w.Close()
 ```
 
